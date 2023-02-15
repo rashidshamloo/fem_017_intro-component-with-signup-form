@@ -1,0 +1,255 @@
+//font
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+//CSS Reset
+// @import url("modern-normalize.min.css");
+// @import url("reset.css");
+// @import "reset";
+@import "modern-normalize.min";
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+//color variables
+$red: hsl(0, 100%, 74%);
+$green: hsl(154, 59%, 51%);
+$blue: hsl(248, 32%, 49%);
+$darkBlue: hsl(249, 10%, 26%);
+$grayishBlue: hsl(246, 25%, 77%);
+
+//mixins
+@mixin flexCenter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+@mixin flexStart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+@mixin flexStretch {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  color: white;
+  min-height: 100vh;
+  background-image: url("../images/bg-intro-mobile.png");
+  background-color: $red;
+  padding: 6rem 1.5rem 0.75rem 1.5rem;
+}
+.intro-component {
+  @include flexStart();
+  row-gap: 3rem;
+  &__text {
+    @include flexCenter();
+    row-gap: 1.5rem;
+    h1 {
+      font-size: 1.75rem;
+      font-weight: 600;
+      line-height: 2.5rem;
+      text-align: center;
+    }
+    p {
+      font-size: 1rem;
+      font-weight: 300;
+      line-height: 1.65rem;
+      text-align: center;
+    }
+  }
+  &__form-wrapper {
+    @include flexStretch();
+    align-items: stretch;
+    row-gap: 1.25rem;
+  }
+  &__form-header {
+    background-color: $blue;
+    border-radius: 0.5rem;
+    padding: 1.25rem 0;
+    box-shadow: 0 0.5rem 0 hsla(0, 0%, 0%, 0.2);
+    p {
+      text-align: center;
+      font-size: 0.95rem;
+      line-height: 1.5rem;
+      span {
+        font-weight: bold;
+      }
+    }
+  }
+  &__form-fields-wrapper {
+    @include flexStretch();
+    background-color: white;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    box-shadow: 0 0.5rem 0 hsla(0, 0%, 0%, 0.2);
+  }
+  &__input-group {
+    @include flexStretch();
+    position: relative;
+    row-gap: 0.25rem;
+    margin-bottom: 1rem;
+    input {
+      height: 3.5rem;
+      border-radius: 0.25rem;
+      border-width: 0.1rem;
+      border-style: solid;
+      border-color: rgba($grayishBlue, 0.5);
+      padding-left: 1rem;
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: $darkBlue;
+      &::placeholder {
+        color: $grayishBlue;
+      }
+    }
+    p {
+      display: none;
+      color: $red;
+      text-align: right;
+      font-size: 0.65rem;
+      font-style: italic;
+    }
+    img {
+      visibility: hidden;
+      width: 1.25rem;
+      position: absolute;
+      top: 1.125rem;
+      right: 1.25rem;
+    }
+    &--error {
+      input {
+        border-color: rgba($red, 0.5);
+        color: $red;
+      }
+      p {
+        display: initial;
+      }
+      img {
+        visibility: visible;
+      }
+    }
+  }
+  &__button {
+    width: 100%;
+    background-color: $green;
+    border: none;
+    outline: none;
+    color: white;
+    text-transform: uppercase;
+    border-radius: 0.25rem;
+    padding: 1.15rem 0;
+    font-weight: 400;
+    box-shadow: 0 0.25rem 0 darken($green, 5%);
+    margin-bottom: 0.25rem;
+    font-size: 0.95rem;
+    letter-spacing: 0.05rem;
+    cursor: pointer;
+  }
+  &__form-footer {
+    color: $grayishBlue;
+    font-size: 0.65rem;
+    text-align: center;
+    padding: 0.5rem 1.5rem 0 1.5rem;
+    line-height: 1.25rem;
+    a {
+      text-decoration: none;
+      color: $red;
+      font-weight: 600;
+    }
+  }
+}
+footer {
+  text-align: center;
+  font-size: 0.7rem;
+  margin-top: 1.5rem;
+  p {
+    color: white;
+    margin-bottom: 0.2rem;
+  }
+  i {
+    margin: 0 0.25rem;
+  }
+  a {
+    color: white;
+  }
+}
+
+//media queries
+@media only screen and (pointer: fine) {
+  .intro-component {
+    &__button {
+      &:hover {
+        filter: brightness(130%);
+      }
+    }
+    &__form-footer {
+      a {
+        &:hover {
+          filter: brightness(130%);
+        }
+      }
+    }
+  }
+  footer {
+    a:hover {
+      color: $darkBlue;
+      transition: all 300ms;
+    }
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  html {
+    font-size: 1.15vw;
+  }
+  body {
+    @include flexCenter();
+    padding: 0;
+  }
+  .intro-component {
+    flex-direction: row;
+    justify-content: space-between;
+    width: 69.375rem;
+    &__text {
+      flex-basis: 50%;
+      row-gap: 3rem;
+      h1 {
+        font-size: 3.25rem;
+        text-align: left;
+        line-height: 3.5rem;
+      }
+      p {
+        text-align: left;
+      }
+    }
+    &__form-wrapper {
+      width: 33.75rem;
+    }
+    &__form-header {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      column-gap: 0.25rem;
+    }
+    &__form-fields-wrapper {
+      padding: 2.5rem;
+    }
+    &__input-group {
+      margin-bottom: 1.25rem;
+      input {
+        padding-left: 2rem;
+      }
+    }
+    &__form-footer {
+      font-size: 0.7rem;
+    }
+  }
+}
