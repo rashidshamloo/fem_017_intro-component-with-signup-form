@@ -2,6 +2,16 @@
 document
   .getElementById("intro-component__form")
   .addEventListener("submit", validateForm);
+//add event listener to input fields
+let inputFields = document
+  .getElementById("intro-component__form")
+  .getElementsByTagName("input");
+//add event for removing error style when input changes
+for (let inputField of inputFields) {
+  inputField.addEventListener("input", (event) => {
+    removeError(inputField.getAttribute("name"));
+  });
+}
 
 /* function declarations */
 
@@ -38,6 +48,7 @@ function setError(name, invalid = false) {
 
 //removes the error style from element
 function removeError(name) {
+  // alert(name);
   let element = document.querySelector(`[name="${name}"`);
   element.parentElement.classList.remove("intro-component__input-group--error");
 }
